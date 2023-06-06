@@ -5,7 +5,9 @@ import { buildResolve } from './buildResolve';
 import { buildPlugins } from './buildPlugins';
 import { buildDevServer } from './buildDevServer';
 
-export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
+export function buildWebpackConfig(
+  options: BuildOptions,
+): webpack.Configuration {
   const {
     mode,
     paths,
