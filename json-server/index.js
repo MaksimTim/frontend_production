@@ -17,16 +17,6 @@ server.use(async (req, res, next) => {
   next();
 });
 
-// проверяем, авторизован ли пользователь
-// eslint-disable-next-line
-server.use((req, res, next) => {
-  if (!req.headers.authorization) {
-    return res.status(403).json({ message: 'AUTH ERROR' });
-  }
-
-  next();
-});
-
 // Эндпоинт для логина
 server.post('/login', (req, res) => {
   try {
@@ -49,7 +39,16 @@ server.post('/login', (req, res) => {
   }
 });
 
-server.use(jsonServer.defaults());
+// проверяем, авторизован ли пользователь
+// eslint-disable-next-line
+server.use((req, res, next) => {
+  if (!req.headers.authorization) {
+    return res.status(403).json({ message: 'AUTH ERROR' });
+  }
+
+  next();
+});
+
 server.use(router);
 
 // запуск сервера
